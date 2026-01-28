@@ -5,11 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Norman Aranez | Full-Stack Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Hidden initially */
+    .animate-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    /* Visible state */
+    .animate-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
   <!-- Header -->
-  <header class="bg-white py-12 text-center border-b border-gray-200">
+  <header class="bg-white py-12 text-center border-b border-gray-200 animate-section">
     <h1 class="text-4xl md:text-5xl font-bold mb-2">Norman Aranez</h1>
     <p class="text-gray-600 text-lg md:text-xl">
       Full-Stack Developer | TypeScript, Node.js, Go, Python | <span class="font-semibold">Database-First Expert</span>
@@ -17,7 +30,7 @@
   </header>
 
   <!-- About Me -->
-  <section class="max-w-5xl mx-auto py-12 px-6">
+  <section class="max-w-5xl mx-auto py-12 px-6 animate-section">
     <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 mb-4">About Me</h2>
     <p class="text-gray-700 text-base md:text-lg leading-relaxed">
       I build <strong>clean, scalable, production-ready web applications</strong> with a <strong>database-first approach</strong>, ensuring systems are robust, efficient, and aligned with real business needs. My focus is on <span class="font-semibold text-indigo-600">performance, maintainability, and real business impact</span>.
@@ -25,7 +38,7 @@
   </section>
 
   <!-- Core Skills -->
-<section class="max-w-5xl mx-auto py-12 px-6">
+<section class="max-w-5xl mx-auto py-12 px-6 animate-section">
   <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 mb-8 text-center">🛠 Core Skills</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <!-- Database -->
@@ -73,7 +86,7 @@
 
 
   <!-- What I Do Best -->
-  <section class="max-w-5xl mx-auto py-12 px-6">
+  <section class="max-w-5xl mx-auto py-12 px-6 animate-section">
     <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 mb-4">🚀 What I Do Best</h2>
     <ul class="text-gray-700 list-disc list-inside space-y-2 text-base md:text-lg">
       <li>Build <strong>high-performance backend APIs</strong> powered by well-structured databases</li>
@@ -85,7 +98,7 @@
   </section>
 
   <!-- Why Clients Hire Me -->
-  <section class="max-w-5xl mx-auto py-12 px-6">
+  <section class="max-w-5xl mx-auto py-12 px-6 animate-section">
     <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 mb-4">🤝 Why Clients Hire Me</h2>
     <ul class="text-gray-700 list-disc list-inside space-y-2 text-base md:text-lg">
       <li><strong>Database-first mindset:</strong> data drives the system</li>
@@ -96,16 +109,32 @@
   </section>
 
   <!-- Call to Action -->
-  <section id="contact" class="text-center py-12">
+  <section id="contact" class="text-center py-12 animate-section">
     <a href="mailto:your.email@example.com" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-200">
       Let's Build Together
     </a>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-200">
+  <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-200 animate-section">
     © 2026 Norman Aranez. All rights reserved.
   </footer>
+
+  <script>
+    // Intersection Observer to animate sections on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate once
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.animate-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 
 </body>
 </html>
